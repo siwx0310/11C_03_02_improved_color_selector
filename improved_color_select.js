@@ -4,23 +4,25 @@ window.addEventListener("DOMContentLoaded", start);
 
 // Start
 function start() {
-  console.log("start");
-  const color = document.querySelector("#color").value;
-  getColor(color);
-  document.querySelector("#color").addEventListener("input", getColor);
+  const hex = document.querySelector("#color").value;
+  getColor(hex);
 }
 
 // Get the colors
-function getColor() {
-  const color = document.querySelector("#color").value; // value = hex
-  console.log(color);
-  displayPickedColor(color);
-  displayHex(color);
-  hexToRGB(color);
+function getColor(hex) {
+  const rgb = hexToRGB(hex);
+  const hsl = rgbToHSL(rgb);
+  const css = rgbToCss(rgb);
+
+  displayHex(hex);
+  displayRGB(rgb);
+  displayHSL(hsl);
+  displayPickedColor(css);
+  document.querySelector("#color").addEventListener("input", start);
 }
 // Display the picked color
-function displayPickedColor(hex) {
-  document.querySelector(".box").style.backgroundColor = hex;
+function displayPickedColor(css) {
+  document.querySelector(".box").style.backgroundColor = css;
 }
 
 // Display hex
@@ -45,14 +47,22 @@ function hexToRGB(hex) {
   const g = parseInt(hex.substring(3, 5), 16);
   const b = parseInt(hex.substring(5, 7), 16);
 
-  console.log({ r, g, b });
-  displayRGB(r, g, b);
-  rgbToHSL(r, g, b);
+  return { r, g, b };
 }
 
-function rgbToCss() {}
+function rgbToCss({ r, g, b }) {
+  return `rgb(${r}, ${g}, ${b})`;
+}
+/*
+function rgbToHex({ r, g, b }) {
+  const r2 = r.toString(16).padStart(2, "0");
+  const g2 = g.toString(16).padStart(2, "0");
+  const b2 = b.toString(16).padStart(2, "0");
+  const hex = `#${r2}${g2}${b2}`;
 
-function rgbToHex() {}
+  return hex;
+}
+*/
 
 // Change rgb to HSL
 function rgbToHSL(r, g, b) {
@@ -97,8 +107,5 @@ function rgbToHSL(r, g, b) {
   s = Math.round(s);
   l = Math.round(l);
 
-  // Given code
-  console.log("hsl(%f,%f%,%f%)", h, s, l); // just for testing
-  // My code
-  displayHSL(h, s, l);
+  return { h, s, l };
 }

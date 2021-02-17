@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Color Selector | Siw</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0 auto;
+      }
+
+      .section_wrapper {
+        margin-top: 200px;
+        max-width: 800px;
+        display: flex;
+        flex-direction: row;
+      }
+      .box {
+        width: 200px;
+        height: 150px;
+        background-color: black;
+      }
+
+      .column_right {
+        display: flex;
+        flex-direction: column;
+      }
+
+      #color {
+        width: 200px;
+        height: 150px;
+      }
+    </style>
+  </head>
+  <body>
+    <section>
+      <div class="section_wrapper">
+        <div class="column_left">
+          <input type="color" id="color" />
+        </div>
+        <div class="column_right">
+          <div class="box"></div>
+          <output id="hex"></output>
+          <output id="rgb"></output>
+          <output id="hsl"></output>
+        </div>
+      </div>
+    </section>
+
+    <script src="improved_color_select.js"></script>
+  </body>
+</html>
