@@ -31,12 +31,12 @@ function displayHex(hex) {
 }
 
 // Display rgb from function
-function displayRGB(r, g, b) {
+function displayRGB({ r, g, b }) {
   document.querySelector("#rgb").textContent = `R: ${r} G: ${g} B: ${b}`;
 }
 
 // Display hsl from function rgbToHSL
-function displayHSL(h, s, l) {
+function displayHSL({ h, s, l }) {
   document.querySelector("#hsl").textContent = `H: ${h} S: ${s}% L: ${l}%`;
 }
 
@@ -46,7 +46,7 @@ function hexToRGB(hex) {
   const r = parseInt(hex.substring(1, 3), 16);
   const g = parseInt(hex.substring(3, 5), 16);
   const b = parseInt(hex.substring(5, 7), 16);
-
+  console.log({ r, g, b }); // uotput correct
   return { r, g, b };
 }
 
@@ -65,7 +65,7 @@ function rgbToHex({ r, g, b }) {
 */
 
 // Change rgb to HSL
-function rgbToHSL(r, g, b) {
+function rgbToHSL({ r, g, b }) {
   // Given exercise code
   // The algorithm for conversion from RGB to HSL as described on the HSL
   r /= 255;
@@ -106,6 +106,6 @@ function rgbToHSL(r, g, b) {
   h = Math.round(h);
   s = Math.round(s);
   l = Math.round(l);
-
+  console.log({ h, s, l }); //output is correct
   return { h, s, l };
 }
